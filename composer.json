@@ -1,7 +1,7 @@
 {
-    "name": "phpixie/http",
-    "description": "HTTP library for PHPixie, implements the PSR-7 standard",
-    "keywords": ["http", "psr-7"],
+    "name": "phpixie/processors",
+    "description": "Processors library for PHPixie",
+    "keywords": ["processors"],
     "homepage": "http://phpixie.com",
     "type": "library",
     "license": "BSD",
