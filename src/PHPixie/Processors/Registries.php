@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPixie\Process;
+namespace PHPixie\Processors;
 
-interface Processors
+class Registries
 {
     protected $registries;
     protected $processorMap;
@@ -18,7 +18,7 @@ interface Processors
         }
     }
     
-    public function getProcessor($name)
+    public function processor($name)
     {
         $registryName = $this->processorMap[$name];
         $registry = $this->registry($registryName);
