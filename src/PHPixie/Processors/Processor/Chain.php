@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPixie\Router\Processor;
+namespace PHPixie\Processors\Processor;
 
-class Chain implements \PHPixie\Router\Processor
+class Chain implements \PHPixie\Processors\Processor
 {
-    protected $processors;
+    protected $registries;
     
     public function process($configData, $value)
     {
@@ -13,7 +13,7 @@ class Chain implements \PHPixie\Router\Processor
             $type   = $configData->getRequired('processor');
             $config = $configData->slice('config');
             
-            $processor = $this->processors->get($type);
+            $processor = $this->registries->getProcessor($type);
             $value = $processor->process($config, $value);
         }
         

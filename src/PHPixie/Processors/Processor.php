@@ -6,4 +6,3 @@ interface Processor
 {
     public function process($configData, $input);
 }
-    

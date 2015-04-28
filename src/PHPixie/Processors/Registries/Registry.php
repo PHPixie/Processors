@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPixie\Process;
+namespace PHPixie\Process\Processors;
 
-interface Processors
+interface Registry
 {
     public function get($name);
     public function processorNames();
