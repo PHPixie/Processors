@@ -4,9 +4,13 @@ namespace PHPixie;
 
 class Processors
 {
-    public function get($name)
+    public function chain($processors)
     {
-        return $this->builder->registries()->getProcessor($name);
+        return new Processors\Processor\Chain($processors);
     }
     
+    public function compositeRepository($repositoryMap)
+    {
+        return new Processors\Repository\Composite($repositoryMap);
+    }
 }

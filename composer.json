@@ -12,9 +12,6 @@
             "homepage": "http://dracony.org"
         }
     ],
-    "require": {
-        "phpixie/slice": "3.*@dev"
-    },
     "require-dev": {
         "phpixie/test": "3.*@dev"
     },
