@@ -5,18 +5,25 @@ namespace PHPixie\Processors\Repository;
 class Composite implements \PHPixie\Processors\Repository
 {
     protected $repositoryMap;
+    protected $defaultRepositoryName;
     
-    public function __construct($repositoryMap)
+    public function __construct($repositoryMap, $defaultRepositoryName = null)
     {
         $this->repositoryMap = $repositoryMap;
+        $this->defaultRepositoryName = $defaultRepositoryName;
     }
     
     public function get($name)
     {
         $parts = explode('.', $name, 2);
+        $count = count($parts);
         
-        if(count($parts) !== 2) {
-            throw new \PHPixie\Processors\Exception("Invalid processor name '$name' specified.");
+        if($count === 1) {
+            if($this->defaultRepositoryName !== null) {
+                array_unshift($parts, $this->defaultRepositoryName);
+            }else{
+                throw new \PHPixie\Processors\Exception("Invalid processor name '$name' specified.");
+            }
         }
         
         $repository = $this->repository($parts[0]);

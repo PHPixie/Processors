@@ -59,4 +59,21 @@ class CompositeTest extends \PHPixie\Test\Testcase
             $composite->get('fairy');
         }, '\PHPixie\Processors\Exception');
     }
+    
+    /**
+     * @covers ::get
+     * @covers ::<protected>
+     */
+    public function testGetDefault()
+    {
+        $this->composite = new \PHPixie\Processors\Repository\Composite($this->repositoryMap, 'pixie');
+        $processor = $this->quickMock('\PHPixie\Processors\Processor');
+        $this->method($this->repositoryMap['pixie'], 'get', $processor, array('fairy'), 0);
+        $this->assertSame($processor, $this->composite->get('fairy'));
+        
+        $composite = $this->composite;
+        $this->assertException(function() use($composite) {
+            $composite->get('blum.fairy');
+        }, '\PHPixie\Processors\Exception');
+    }
 }

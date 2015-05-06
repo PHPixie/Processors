@@ -1,7 +1,7 @@
 {
     "name": "phpixie/processors",
     "description": "Processors library for PHPixie",
-    "keywords": ["processors"],
+    "keywords": ["processors", "chain"],
     "homepage": "http://phpixie.com",
     "type": "library",
     "license": "BSD",
