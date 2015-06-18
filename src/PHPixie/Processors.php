@@ -8,9 +8,4 @@ class Processors
     {
         return new Processors\Processor\Chain($processors);
     }
-    
-    public function compositeRepository($repositoryMap)
-    {
-        return new Processors\Repository\Composite($repositoryMap);
-    }
 }

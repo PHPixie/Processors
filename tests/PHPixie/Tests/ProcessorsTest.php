@@ -28,20 +28,4 @@ class ProcessorsTest extends \PHPixie\Test\Testcase
             'processors' => $processors
         ));
     }
-    
-    /**
-     * @covers ::compositeRepository
-     * @covers ::<protected>
-     */
-    public function testCompositeRepository()
-    {
-        $repositoryMap = array(
-            'test' => $this->quickMock('\PHPixie\Processors\Repository')
-        );
-        $chain = $this->processors->compositeRepository($repositoryMap);
-        $this->assertInstance($chain, '\PHPixie\Processors\Repository\Composite', array(
-            'repositoryMap' => $repositoryMap
-        ));
-    }
-
 }
