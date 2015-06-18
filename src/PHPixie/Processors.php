@@ -8,4 +8,18 @@ class Processors
     {
         return new Processors\Processor\Chain($processors);
     }
+    
+    public function dispatch($dispatcher)
+    {
+        return new Processors\Processor\Dispatch($dispatcher);
+    }
+    
+    public function checkIsDispatchable($dispatcher, $foundProcessor, $notFoundProcessor)
+    {
+        return new Processors\Processor\CheckIsDispatchable(
+            $dispatcher,
+            $foundProcessor,
+            $notFoundProcessor
+        );
+    }
 }
