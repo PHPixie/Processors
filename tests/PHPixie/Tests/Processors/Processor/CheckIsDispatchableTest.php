@@ -45,14 +45,14 @@ class CheckIsDispatchableTest extends \PHPixie\Test\Testcase
     
     protected function processTest($found)
     {
-        $request = $this->quickMock('\PHPixie\HTTP\Request');
-        $this->method($this->dispatcher, 'hasProcessorFor', $found, array($request), 0);
+        $input = new \stdClass;
+        $this->method($this->dispatcher, 'hasProcessorFor', $found, array($input), 0);
         
         $processor = $found ? $this->foundProcessor : $this->notFoundProcessor;
-        $response = $this->quickMock('\PHPixie\HTTP\Response');
+        $output = new \stdClass;
         
-        $this->method($processor, 'process', $response, array($request), 0);
+        $this->method($processor, 'process', $output, array($input), 0);
         
-        $this->assertSame($response, $this->checkRoute->process($request));
+        $this->assertSame($output, $this->checkRoute->process($input));
     }
 }

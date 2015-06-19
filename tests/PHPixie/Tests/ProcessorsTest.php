@@ -64,4 +64,24 @@ class ProcessorsTest extends \PHPixie\Test\Testcase
             'notFoundProcessor' => $notFoundProcessor,
         ));
     }
+    
+    /**
+     * @covers ::catchException
+     * @covers ::<protected>
+     */
+    public function testCatchException()
+    {
+        $valueProcessor     = $this->quickMock('\PHPixie\Processors\Processor');
+        $exceptionProcessor = $this->quickMock('\PHPixie\Processors\Processor');
+        
+        $processor = $this->processors->catchException(
+            $valueProcessor,
+            $exceptionProcessor
+        );
+        
+        $this->assertInstance($processor, '\PHPixie\Processors\Processor\CatchException', array(
+            'valueProcessor'     => $valueProcessor,
+            'exceptionProcessor' => $exceptionProcessor,
+        ));
+    }
 }

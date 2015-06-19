@@ -22,4 +22,12 @@ class Processors
             $notFoundProcessor
         );
     }
+    
+    public function catchException($valueProcessor, $exceptionProcessor)
+    {
+        return new Processors\Processor\CatchException(
+            $valueProcessor,
+            $exceptionProcessor
+        );
+    }
 }
