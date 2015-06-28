@@ -21,7 +21,7 @@ class ProcessorsTest extends \PHPixie\Test\Testcase
     public function testChain()
     {
         $processors = array(
-            $this->quickMock('\PHPixie\Processors\Processor')
+            $this->getProcessor()
         );
         $chain = $this->processors->chain($processors);
         $this->assertInstance($chain, '\PHPixie\Processors\Processor\Chain', array(
@@ -30,38 +30,25 @@ class ProcessorsTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::dispatch
+     * @covers ::checkIsProcessable
      * @covers ::<protected>
      */
-    public function testDispatch()
+    public function testCheckIsProcessable()
     {
-        $dispatcher = $this->quickMock('\PHPixie\Processors\Dispatcher');
-        $dispatch = $this->processors->dispatch($dispatcher);
-        $this->assertInstance($dispatch, '\PHPixie\Processors\Processor\Dispatch', array(
-            'dispatcher' => $dispatcher
-        ));
-    }
-    
-    /**
-     * @covers ::checkIsDispatchable
-     * @covers ::<protected>
-     */
-    public function testCheckIsDispatchable()
-    {
-        $dispatcher        = $this->quickMock('\PHPixie\Processors\Dispatcher');
-        $foundProcessor    = $this->quickMock('\PHPixie\Processors\Processor');
-        $notFoundProcessor = $this->quickMock('\PHPixie\Processors\Processor');
+        $processor               = $this->getProcessor();
+        $processableProcessor    = $this->getProcessor();
+        $notProcessableProcessor = $this->getProcessor();
         
-        $processor = $this->processors->checkIsDispatchable(
-            $dispatcher,
-            $foundProcessor,
-            $notFoundProcessor
+        $checkIsProcessable = $this->processors->checkIsProcessable(
+            $processor,
+            $processableProcessor,
+            $notProcessableProcessor
         );
         
-        $this->assertInstance($processor, '\PHPixie\Processors\Processor\CheckIsDispatchable', array(
-            'dispatcher'        => $dispatcher,
-            'foundProcessor'    => $foundProcessor,
-            'notFoundProcessor' => $notFoundProcessor,
+        $this->assertInstance($checkIsProcessable, '\PHPixie\Processors\Processor\CheckIsProcessable', array(
+            'processor'               => $processor,
+            'processableProcessor'    => $processableProcessor,
+            'notProcessableProcessor' => $notProcessableProcessor,
         ));
     }
     
@@ -71,8 +58,8 @@ class ProcessorsTest extends \PHPixie\Test\Testcase
      */
     public function testCatchException()
     {
-        $valueProcessor     = $this->quickMock('\PHPixie\Processors\Processor');
-        $exceptionProcessor = $this->quickMock('\PHPixie\Processors\Processor');
+        $valueProcessor     = $this->getProcessor();
+        $exceptionProcessor = $this->getProcessor();
         
         $processor = $this->processors->catchException(
             $valueProcessor,
@@ -83,5 +70,10 @@ class ProcessorsTest extends \PHPixie\Test\Testcase
             'valueProcessor'     => $valueProcessor,
             'exceptionProcessor' => $exceptionProcessor,
         ));
+    }
+    
+    protected function getProcessor()
+    {
+        return $this->quickMock('\PHPixie\Processors\Processor');
     }
 }

@@ -9,17 +9,12 @@ class Processors
         return new Processors\Processor\Chain($processors);
     }
     
-    public function dispatch($dispatcher)
+    public function checkIsProcessable($processor, $processableProcessor, $notProcessableProcessor)
     {
-        return new Processors\Processor\Dispatch($dispatcher);
-    }
-    
-    public function checkIsDispatchable($dispatcher, $foundProcessor, $notFoundProcessor)
-    {
-        return new Processors\Processor\CheckIsDispatchable(
-            $dispatcher,
-            $foundProcessor,
-            $notFoundProcessor
+        return new Processors\Processor\CheckIsProcessable(
+            $processor,
+            $processableProcessor,
+            $notProcessableProcessor
         );
     }
     
