@@ -76,7 +76,7 @@ class DispatcherTest extends \PHPixie\Test\Testcase
             $processor = null;
         
         }elseif(!$isSelective) {
-            $processor = $this->quickMock('\PHPixie\Processors\Processor');
+            $processor = $this->getProcessor();
             
         }else{
             $processor = $this->quickMock('\PHPixie\Processors\Processor\Selective');
@@ -90,6 +90,11 @@ class DispatcherTest extends \PHPixie\Test\Testcase
         }
         
         return $processor;
+    }
+    
+    protected function getProcessor()
+    {
+        return $this->quickMock('\PHPixie\Processors\Processor');
     }
     
     protected function getValue()
