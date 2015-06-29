@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPixie\Tests\Processors\Processor\Selective;
+namespace PHPixie\Tests\Processors\Processor;
 
 /**
- * @coversDefaultClass \PHPixie\Processors\Processor\Selective\Dispatcher
+ * @coversDefaultClass \PHPixie\Processors\Processor\Dispatcher
  */
 class DispatcherTest extends \PHPixie\Test\Testcase
 {
@@ -82,7 +82,6 @@ class DispatcherTest extends \PHPixie\Test\Testcase
             $processor = $this->quickMock('\PHPixie\Processors\Processor\Selective');
             $this->method($processor, 'isProcessable', $isProcessable, array($value));
         }
-        var_dump($processor);
         
         $this->method($this->dispatcherMock, 'processor', $processor, array($name));
         
@@ -100,6 +99,6 @@ class DispatcherTest extends \PHPixie\Test\Testcase
     
     protected function dispatcherMock($methods = array())
     {
-        return $this->quickMock('\PHPixie\Processors\Processor\Selective\Dispatcher', $methods);
+        return $this->quickMock('\PHPixie\Processors\Processor\Dispatcher', $methods);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPixie\Processors\Processor\Selective;
+namespace PHPixie\Processors\Processor;
 
-abstract class Dispatcher implements \PHPixie\Processors\Processor\Selective
+abstract class Dispatcher implements Selective
 {
     public function process($value)
     {
@@ -28,7 +28,7 @@ abstract class Dispatcher implements \PHPixie\Processors\Processor\Selective
         }
         
         $processor = $this->processor($name);
-        if($processor instanceof \PHPixie\Processors\Processor\Selective) {
+        if($processor instanceof Selective) {
             if(!$processor->isProcessable($value)) {
                 return null;
             }
