@@ -21,7 +21,7 @@ class RegistryTest extends \PHPixie\Tests\Processors\Processor\DispatcherTest
     public function testProcessor()
     {
         $dispatcherMock = $this->dispatcherMock(array('getProcessorNameFor'));
-        $processor = $this->quickMock('\PHPixie\Processors\Processor');
+        $processor = $this->getProcessor();
         
         $this->method($this->registry, 'get', $processor, array('pixie'), 0);
         $this->assertSame($processor, $dispatcherMock->processor('pixie'));
