@@ -15,6 +15,16 @@ class RegistryTest extends \PHPixie\Tests\Processors\Processor\DispatcherTest
     }
     
     /**
+     * @covers ::__construct
+     * @covers \PHPixie\Processors\Processor\Dispatcher\Registry::__construct
+     * @covers ::<protected>
+     */
+    public function testConstruct()
+    {
+        $this->dispatcherMock(array('getProcessorNameFor'));
+    }
+    
+    /**
      * @covers ::processor
      * @covers ::<protected>
      */
