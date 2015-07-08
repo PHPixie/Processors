@@ -2,7 +2,7 @@
 
 namespace PHPixie\Processors\Processor;
 
-abstract class Actions
+abstract class Actions implements Selective
 {
     public function process($value)
     {
