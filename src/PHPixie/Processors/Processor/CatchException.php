@@ -17,9 +17,13 @@ class CatchException implements \PHPixie\Processors\Processor
     {
         try {
             return $this->valueProcessor->process($value);
-            
+
+        } catch(\Throwable $exception) {
+            return $this->exceptionProcessor->process($exception);
+
         } catch(\Exception $exception) {
             return $this->exceptionProcessor->process($exception);
+
         }
     }
 }
